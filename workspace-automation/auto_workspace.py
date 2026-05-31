@@ -2,7 +2,7 @@ import os
 import subprocess
 from pathlib import Path
 
-REPO_NAME = "vm-health-monitor"
+REPO_NAME = "AI-Assisted-DevOps-Zero-to-Hero"
 
 SCRIPT_CONTENT = '''#!/bin/bash
 

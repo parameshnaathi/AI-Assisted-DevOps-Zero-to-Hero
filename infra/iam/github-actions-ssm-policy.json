@@ -1,0 +1,26 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowSSMSendCommand",
+      "Effect": "Allow",
+      "Action": [
+        "ssm:SendCommand"
+      ],
+      "Resource": [
+        "arn:aws:ssm:*:*:document/AWS-RunShellScript",
+        "arn:aws:ec2:*:*:instance/*"
+      ]
+    },
+    {
+      "Sid": "AllowSSMCommandStatusRead",
+      "Effect": "Allow",
+      "Action": [
+        "ssm:GetCommandInvocation",
+        "ssm:ListCommandInvocations",
+        "ssm:ListCommands"
+      ],
+      "Resource": "*"
+    }
+  ]
+}

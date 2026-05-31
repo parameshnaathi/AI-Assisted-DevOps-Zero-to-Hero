@@ -34,8 +34,18 @@ else
     STATUS="Not Healthy"
 fi
 
-echo "VM Health Status: $STATUS"
+echo "===================================="
+echo " VM Health Check Report"
+echo "===================================="
+echo "Hostname      : $(hostname)"
+echo "Checked At    : $(date)"
+echo "CPU Usage     : $CPU%"
+echo "Memory Usage  : $MEMORY%"
+echo "Disk Usage    : $DISK%"
+echo "Health Status : $STATUS"
 
 if [ "$EXPLAIN" = true ]; then
-    echo "Reason: ${REASON:-All metrics within threshold}"
+    echo "Reason        : ${REASON:-All metrics are within threshold}"
 fi
+
+echo "===================================="
