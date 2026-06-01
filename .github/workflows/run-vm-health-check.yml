@@ -40,12 +40,16 @@ jobs:
             --parameters 'commands=[
               "set -e",
               "echo Starting VM Health Check",
+              "echo Installing required packages: git and bc",
+              "if command -v yum >/dev/null 2>&1; then sudo yum install -y git bc; elif command -v dnf >/dev/null 2>&1; then sudo dnf install -y git bc; elif command -v apt-get >/dev/null 2>&1; then sudo apt-get update -y && sudo apt-get install -y git bc; else echo Unsupported package manager; exit 1; fi",
+              "git --version",
               "cd /tmp",
               "rm -rf vm-health-monitor",
-              "git clone https://github.com/${{ github.repository }}.git",
+              "git clone https://github.com/parameshnaathi/AI-Assisted-DevOps-Zero-to-Hero.git vm-health-monitor",
               "cd vm-health-monitor",
+              "ls -la",
+              "test -f scripts/health_check.sh || { echo scripts/health_check.sh not found; find . -maxdepth 3 -type f; exit 1; }",
               "chmod +x scripts/health_check.sh",
-              "if ! command -v bc >/dev/null 2>&1; then sudo yum install -y bc || sudo apt-get update && sudo apt-get install -y bc; fi",
               "./scripts/health_check.sh explain"
             ]' \
             --query "Command.CommandId" \
