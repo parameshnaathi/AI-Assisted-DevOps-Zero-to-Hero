@@ -81,7 +81,7 @@ jobs:
             --output text
 
       - name: Print VM Health Check Errors
-        if: always()
+        if: always() && env.COMMAND_ID != ''
         run: |
           aws ssm get-command-invocation \
             --command-id "$COMMAND_ID" \
